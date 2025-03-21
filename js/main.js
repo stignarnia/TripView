@@ -24,15 +24,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         setTheme(cookieTheme);
     }
 
-    // Initialize data and UI
-    const data = await fetchTripData();
-    initializeTripList((trip) => {
-        showTripDetails(trip);
-        updateMap(trip);
-    });
-    if (data.Trips.length > 0) {
-        showTripDetails(data.Trips[0]);
-        updateMap(data.Trips[0]);
+    try {
+        // Initialize data and UI
+        const data = await fetchTripData();
+        
+        // Initialize trip list with async function
+        await initializeTripList((trip) => {
+            showTripDetails(trip);
+            updateMap(trip);
+        });
+        
+        if (data.Trips.length > 0) {
+            showTripDetails(data.Trips[0]);
+            updateMap(data.Trips[0]);
+        }
+    } catch (error) {
+        console.error('Error initializing data:', error);
     }
 });
 

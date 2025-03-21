@@ -26,11 +26,11 @@ function getNextActivityInfo(trip) {
         </div>`;
 }
 
-export function initializeTripList(onTripSelect) {
+export async function initializeTripList(onTripSelect) {
     const tripList = document.getElementById('tripList');
     tripList.innerHTML = '';
 
-    const tripData = getTripData();
+    const tripData = await getTripData();
     tripData.Trips.sort((a, b) => 
         new Date(b.TripData.start_date) - new Date(a.TripData.start_date)
     ).forEach((trip, index) => {

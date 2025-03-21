@@ -1,14 +1,19 @@
-let tripData = null;
-
 // Fetch and initialize the trip data
 export async function fetchTripData() {
-    const response = await fetch('tripitdata.json');
-    tripData = await response.json();
-    return tripData;
+    const response = await fetch('tripitdata.json', {
+        // Force cache revalidation
+        cache: 'no-store',
+        headers: {
+            'Cache-Control': 'no-cache'
+        }
+    });
+    const data = await response.json();
+    return data;
 }
 
-export function getTripData() {
-    return tripData;
+export async function getTripData() {
+    // Always fetch fresh data
+    return await fetchTripData();
 }
 
 // Format date to readable string
