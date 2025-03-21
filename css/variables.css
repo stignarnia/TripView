@@ -1,0 +1,22 @@
+:root {
+    --primary: #2563eb;
+    --secondary: #64748b;
+    --accent: #3b82f6;
+    --background: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+    --radius: 12px;
+}
+
+[data-theme="dark"] {
+    --primary: #60a5fa;
+    --secondary: #94a3b8;
+    --accent: #3b82f6;
+    --background: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --text-light: #cbd5e1;
+    --border: #334155;
+}

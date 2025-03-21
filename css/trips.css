@@ -1,0 +1,43 @@
+.trips {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+}
+
+.trip-list {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    height: calc(100vh - 220px);
+    overflow-y: auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.trip-card {
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.trip-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.trip-card.active {
+    border-color: var(--primary);
+    background: var(--background);
+}
+
+.trip-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.trip-card p {
+    font-size: 0.875rem;
+    color: var(--text-light);
+}

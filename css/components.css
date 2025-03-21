@@ -1,0 +1,54 @@
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: var(--primary);
+    color: var(--card);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.dates {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.dates::before {
+    content: "📅";
+}
+
+.location {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+.location::before {
+    content: "📍";
+}
+
+.scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .trips {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+    
+    .trip-list, .trip-details {
+        height: auto;
+        max-height: 500px;
+    }
+}
