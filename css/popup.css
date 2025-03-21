@@ -190,3 +190,57 @@
 .frequent-traveler .label {
     margin-right: 0.25rem;
 }
+
+/* Rail Details */
+.rail-segment {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--background);
+}
+
+.rail-segment h4 {
+    margin: 0 0 1rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.rail-route {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.station {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.station .name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.station .time {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.rail-arrow {
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.rail-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border);
+}

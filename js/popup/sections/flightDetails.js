@@ -10,12 +10,17 @@ export function createFlightDetailsContent(activity) {
         return '';
     }
 
+    // Check if it's a round trip (A->B and B->A)
+    const isRoundTrip = activity.Segment.length === 2 &&
+        activity.Segment[0].start_airport_code === activity.Segment[1].end_airport_code &&
+        activity.Segment[0].end_airport_code === activity.Segment[1].start_airport_code;
+
     return `
         <div class="popup-section flights">
             <h3>✈️ Flight Details</h3>
             ${activity.Segment.map((segment, index) => `
                 <div class="flight-segment">
-                    <h4>Flight ${index + 1}</h4>
+                    <h4>${isRoundTrip ? (index === 0 ? 'Outbound' : 'Return') : `Flight ${index + 1}`}</h4>
                     <div class="flight-route">
                         <div class="airport">
                             <span class="code">${segment.start_airport_code}</span>
