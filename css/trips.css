@@ -14,12 +14,13 @@
 }
 
 .trip-card {
-    padding: 1rem;
+    padding: 1.25rem;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     margin-bottom: 1rem;
     cursor: pointer;
     transition: all 0.2s ease;
+    background: var(--background);
 }
 
 .trip-card:hover {
@@ -29,15 +30,66 @@
 
 .trip-card.active {
     border-color: var(--primary);
-    background: var(--background);
+    background: var(--surface);
 }
 
-.trip-card h3 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+.trip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
-.trip-card p {
+.trip-header h3 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.trip-status {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.trip-status.upcoming {
+    background: var(--success-light);
+    color: var(--success);
+}
+
+.trip-status.past {
+    background: var(--neutral-light);
+    color: var(--neutral);
+}
+
+.trip-status.ongoing {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.trip-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.875rem;
     color: var(--text-light);
+}
+
+.info-row .icon {
+    font-size: 1rem;
+}
+
+.next-activity {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border);
+    color: var(--text-primary);
+    font-weight: 500;
 }

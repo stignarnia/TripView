@@ -1,37 +1,36 @@
-/* Popup container */
 .popup {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 1000;
-    overflow-y: auto;
-    transition: all 0.2s ease-out;
     opacity: 0;
     visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .popup.active {
-    background: rgba(0, 0, 0, 0.5);
     opacity: 1;
     visibility: visible;
 }
 
-/* Popup content */
 .popup-content {
-    position: relative;
-    background: var(--card);
-    width: 90%;
-    max-width: 600px;
-    margin: 2rem auto;
+    background: var(--background);
+    border-radius: var(--radius);
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transform: translateY(-20px);
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px);
     opacity: 0;
-    transition: all 0.2s ease-out;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .popup.active .popup-content {
@@ -39,69 +38,155 @@
     opacity: 1;
 }
 
-/* Close button */
 .popup-close {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: var(--background);
+    background: none;
     border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    color: var(--text);
+    color: var(--text-secondary);
+    width: 2rem;
+    height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
 }
 
 .popup-close:hover {
-    background: var(--primary);
-    color: white;
-    transform: scale(1.1);
+    background-color: var(--surface);
 }
 
-.popup-close:active {
-    transform: scale(0.95);
+.popup h2 {
+    margin: 0 0 1.5rem 0;
+    color: var(--text-primary);
+    padding-right: 2rem;
 }
 
-/* Content sections */
 .popup-section {
-    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
 }
 
 .popup-section h3 {
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    color: var(--primary);
+    font-size: 1.1rem;
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
 }
 
 .popup-section p {
     margin: 0.5rem 0;
     font-size: 0.9rem;
+    color: var(--text-secondary);
 }
 
-/* Flight segments */
+.popup-section strong {
+    color: var(--text-primary);
+}
+
+/* Flight Details */
 .flight-segment {
-    margin: 1rem 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     padding: 1rem;
+    margin-bottom: 1rem;
     background: var(--background);
-    border-radius: 4px;
 }
 
 .flight-segment h4 {
-    margin-bottom: 0.5rem;
-    color: var(--primary);
+    margin: 0 0 1rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
 }
 
-@media (max-width: 768px) {
-    .popup-content {
-        width: 95%;
-        margin: 1rem auto;
-        padding: 1rem;
-    }
+.flight-route {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.airport {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.airport .code {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.airport .city {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.airport .time {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.flight-arrow {
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.flight-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border);
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Travelers */
+.traveler-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.traveler-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--background);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.traveler-item .icon {
+    font-size: 1.25rem;
+}
+
+.frequent-traveler {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.frequent-traveler .label {
+    margin-right: 0.25rem;
 }
