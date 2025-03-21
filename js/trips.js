@@ -1,4 +1,4 @@
-import { getTripData, formatDate } from './data.js';
+import { getTripData, formatDate } from './utils/data.js';
 
 let currentTrip = null;
 export function getCurrentTrip() {

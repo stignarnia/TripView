@@ -1,0 +1,16 @@
+/* Variables first */
+@import 'variables.css';
+
+/* Base styles */
+@import 'base.css';
+
+/* Layout components */
+@import 'profile.css';
+@import 'trips.css';
+@import 'details.css';
+
+/* Reusable components */
+@import 'components.css';
+
+/* Feature-specific styles */
+@import 'popup.css';

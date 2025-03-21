@@ -1,4 +1,4 @@
-import { fetchTripData } from './data.js';
+import { fetchTripData } from './utils/data.js';
 import { initializeTripList } from './trips.js';
 import { updateMap, invalidateMapSize } from './map.js';
 import { showTripDetails } from './details.js';
