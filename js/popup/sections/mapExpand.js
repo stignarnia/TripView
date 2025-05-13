@@ -1,7 +1,5 @@
 export function createMapExpandContent(map) {
     return `
-        <div class="popup-section expanded-map">
-            <h3>🗺️ Map View</h3>
-            <div id="expanded-map"></div>
-        </div>`;
+        <h2>🗺️ Map View</h2>
+        <div id="expanded-map"></div>`;
 }
