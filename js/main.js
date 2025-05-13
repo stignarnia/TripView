@@ -48,3 +48,26 @@ themeToggle.addEventListener('click', () => {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
 });
+
+// Reload functionality
+const reloadButton = document.getElementById('reloadButton');
+reloadButton.addEventListener('click', async () => {
+    try {
+        // Re-fetch and reinitialize data
+        const data = await fetchTripData();
+        
+        // Reinitialize trip list
+        await initializeTripList((trip) => {
+            showTripDetails(trip);
+            updateMap(trip);
+        });
+        
+        // Show first trip's details if available
+        if (data.Trips.length > 0) {
+            showTripDetails(data.Trips[0]);
+            updateMap(data.Trips[0]);
+        }
+    } catch (error) {
+        console.error('Error reloading data:', error);
+    }
+});

@@ -32,10 +32,16 @@
     color: var(--text-light);
 }
 
-.theme-toggle {
+.button-container {
     position: absolute;
     top: 1rem;
     right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.theme-toggle {
     background: var(--card);
     border: 1px solid var(--border);
     color: var(--text);
