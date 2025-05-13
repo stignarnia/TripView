@@ -42,10 +42,16 @@ export function showTripDetails(trip) {
         <div class="detail-section">
             <h3>Trip Overview</h3>
             <div class="detail-card clickable">
-                <h4>${trip.TripData.display_name}</h4>
-                <p class="dates">${formatDate(trip.TripData.start_date)} - ${formatDate(trip.TripData.end_date)}</p>
-                <p class="location">${trip.TripData.primary_location}</p>
-                ${trip.TripData.image_url ? `<img src="${trip.TripData.image_url}" alt="${trip.TripData.display_name}" class="trip-image">` : ''}
+                <div class="info-content">
+                    <h4>${trip.TripData.display_name}</h4>
+                    <p class="dates">${formatDate(trip.TripData.start_date)} - ${formatDate(trip.TripData.end_date)}</p>
+                    <p class="location">${trip.TripData.primary_location}</p>
+                </div>
+                <div class="trip-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+                        <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/>
+                    </svg>
+                </div>
             </div>
             <div id="map"></div>
         </div>
@@ -147,6 +153,25 @@ export function showTripDetails(trip) {
     // Update trip content
     details.innerHTML = detailsHTML;
     invalidateMapSize();
+
+    // Try to load the image if URL exists
+    if (trip.TripData.image_url) {
+        const img = new Image();
+        img.onload = function() {
+            const imageContainer = details.querySelector('.trip-image');
+            if (imageContainer) {
+                imageContainer.innerHTML = '';
+                img.className = 'trip-image';
+                img.alt = trip.TripData.display_name;
+                imageContainer.parentNode.replaceChild(img, imageContainer);
+            }
+        };
+        img.onerror = function() {
+            // Keep the placeholder if image fails to load
+            console.log('Failed to load trip image, keeping placeholder');
+        };
+        img.src = trip.TripData.image_url;
+    }
 
     // Add click handler for trip overview
     const overviewCard = details.querySelector('.detail-section:first-child .detail-card');
