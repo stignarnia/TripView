@@ -1,5 +1,6 @@
 import { formatDate, formatDateTime } from './utils/data.js';
 import { Popup } from './popup/popup.js';
+import { invalidateMapSize } from './map.js';
 
 const popup = new Popup();
 
@@ -46,6 +47,7 @@ export function showTripDetails(trip) {
                 <p class="location">${trip.TripData.primary_location}</p>
                 ${trip.TripData.image_url ? `<img src="${trip.TripData.image_url}" alt="${trip.TripData.display_name}" class="trip-image">` : ''}
             </div>
+            <div id="map"></div>
         </div>
     `;
 
@@ -144,10 +146,15 @@ export function showTripDetails(trip) {
 
     // Update trip content
     details.innerHTML = detailsHTML;
+    invalidateMapSize();
 
     // Add click handler for trip overview
     const overviewCard = details.querySelector('.detail-section:first-child .detail-card');
-    overviewCard.addEventListener('click', () => {
+    overviewCard.addEventListener('click', (event) => {
+        // Don't trigger popup if clicking on map
+        if (event.target.closest('#map')) {
+            return;
+        }
         const content = popup.createActivityContent({
             display_name: trip.TripData.display_name,
             StartDateTime: { date: trip.TripData.start_date, time: "00:00:00" },

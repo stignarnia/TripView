@@ -2,25 +2,34 @@ let map = null;
 let markers = [];
 
 export function initializeMap(latitude, longitude) {
-    if (!map) {
-        map = L.map('map').setView([latitude, longitude], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    const mapContainer = document.getElementById('map');
+    if (!mapContainer) {
+        console.error('Map container not found');
+        return;
     }
+
+    // If there's an existing map, clean it up first
+    if (map) {
+        map.remove();
+        map = null;
+        markers = [];
+    }
+
+    map = L.map('map').setView([latitude, longitude], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 }
 
 export function updateMap(trip) {
+    if (!trip?.TripData?.PrimaryLocationAddress?.latitude || !trip?.TripData?.PrimaryLocationAddress?.longitude) {
+        console.error('Invalid trip data for map update');
+        return;
+    }
+
+    // Initialize or reinitialize the map
+    initializeMap(trip.TripData.PrimaryLocationAddress.latitude, 
+        trip.TripData.PrimaryLocationAddress.longitude);
+
     setTimeout(() => {
-        if (!map) {
-            initializeMap(trip.TripData.PrimaryLocationAddress.latitude, 
-                trip.TripData.PrimaryLocationAddress.longitude);
-        } else {
-            // Clear existing markers
-            markers.forEach(marker => map.removeLayer(marker));
-            markers = [];
-            map.setView([trip.TripData.PrimaryLocationAddress.latitude, 
-                trip.TripData.PrimaryLocationAddress.longitude], 13);
-            map.invalidateSize();
-        }
 
         // Add primary location marker
         const marker = L.marker([
