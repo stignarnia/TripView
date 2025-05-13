@@ -29,7 +29,7 @@ export function initializeMap(latitude, longitude) {
 
     // Add expand button
     const expandButton = document.createElement('button');
-    expandButton.className = 'map-expand-button clickable';
+    expandButton.className = 'map-expand-button clickable topright-button';
     expandButton.innerHTML = '⤢';
     expandButton.title = 'Expand Map';
     mapContainer.appendChild(expandButton);

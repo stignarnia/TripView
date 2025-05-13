@@ -17,7 +17,7 @@ export class Popup {
 
         // Create close button
         this.closeBtn = document.createElement('button');
-        this.closeBtn.className = 'popup-close clickable';
+        this.closeBtn.className = 'popup-close clickable topright-button';
         this.closeBtn.innerHTML = '×';
 
         // Assemble popup
