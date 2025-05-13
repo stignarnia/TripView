@@ -43,21 +43,16 @@
     top: 1rem;
     right: 1rem;
     background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
     color: var(--text-secondary);
     width: 2rem;
     height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.5rem;
     border-radius: 50%;
-    transition: background-color 0.2s ease;
-}
-
-.popup-close:hover {
-    background-color: var(--surface);
+    line-height: 0;
+    padding-top: 0.125rem; /* Fine-tune vertical centering */
 }
 
 .popup h2 {

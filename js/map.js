@@ -1,7 +1,16 @@
+import { Popup } from './popup/popup.js';
+import { createMapExpandContent } from './popup/sections/mapExpand.js';
+
 let map = null;
 let markers = [];
+let popup = null;
 
 export function initializeMap(latitude, longitude) {
+    // Initialize popup if not already done
+    if (!popup) {
+        popup = new Popup();
+    }
+
     const mapContainer = document.getElementById('map');
     if (!mapContainer) {
         console.error('Map container not found');
@@ -17,6 +26,34 @@ export function initializeMap(latitude, longitude) {
 
     map = L.map('map').setView([latitude, longitude], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    // Add expand button
+    const expandButton = document.createElement('button');
+    expandButton.className = 'map-expand-button clickable';
+    expandButton.innerHTML = '⤢';
+    expandButton.title = 'Expand Map';
+    mapContainer.appendChild(expandButton);
+
+    // Add click handler for expand button
+    expandButton.addEventListener('click', () => {
+        popup.show(createMapExpandContent());
+        setTimeout(() => {
+            const expandedMapContainer = document.getElementById('expanded-map');
+            if (expandedMapContainer) {
+                const expandedMap = L.map('expanded-map').setView(map.getCenter(), map.getZoom());
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(expandedMap);
+                
+                // Copy markers to expanded map
+                markers.forEach(marker => {
+                    const newMarker = L.marker(marker.getLatLng());
+                    if (marker.getPopup()) {
+                        newMarker.bindPopup(marker.getPopup().getContent());
+                    }
+                    newMarker.addTo(expandedMap);
+                });
+            }
+        }, 100);
+    });
 }
 
 export function updateMap(trip) {
