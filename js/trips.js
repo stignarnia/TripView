@@ -35,7 +35,7 @@ export async function initializeTripList(onTripSelect) {
         new Date(b.TripData.start_date) - new Date(a.TripData.start_date)
     ).forEach((trip, index) => {
         const tripCard = document.createElement('div');
-        tripCard.className = 'trip-card' + (index === 0 ? ' active' : '');
+        tripCard.className = 'trip-card clickable' + (index === 0 ? ' active' : '');
         tripCard.innerHTML = `
             <div class="trip-header">
                 <h3>${trip.TripData.display_name}</h3>

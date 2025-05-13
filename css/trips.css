@@ -15,17 +15,8 @@
 
 .trip-card {
     padding: 1.25rem;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
     margin-bottom: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
     background: var(--background);
-}
-
-.trip-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 .trip-card.active {

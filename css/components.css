@@ -71,27 +71,16 @@
 
 .clickable {
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     position: relative;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
 }
 
 .clickable:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.clickable::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    border: 2px solid var(--primary);
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-
-.clickable:hover::after {
-    opacity: 1;
+    border-color: var(--primary);
 }
 
 .view-details-btn {
